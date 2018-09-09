@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+var CanvasJS = window.CanvasJS;
+
 class CandelChart extends PureComponent {
     constructor(props) {
         super(props);
@@ -7,7 +9,7 @@ class CandelChart extends PureComponent {
     }
 
     renderChart() {
-        this.chart = new window.CanvasJS.Chart("chartContainer", {
+        this.chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: false,
             theme: "light2",
             exportEnabled: false,
