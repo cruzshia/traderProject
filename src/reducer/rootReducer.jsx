@@ -1,4 +1,5 @@
 const defaultState = {
+    error: false,
     loading: false,
     pairList: [],
     tradingPair: {},
@@ -10,6 +11,7 @@ function rootReducer(state = defaultState, action) {
         case "fetching":
             return {
                 ...state,
+                error: false,
                 loading: true
             }
         case "fetched":
@@ -26,6 +28,11 @@ function rootReducer(state = defaultState, action) {
             return {
                 ...state,
                 candles: [...action.payload.candles]
+            }
+        case "fetchError": 
+            return {
+                ...state,
+                error: true
             }
         default:
             return state;

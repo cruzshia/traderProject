@@ -6,7 +6,7 @@ import Loadable from 'react-loadable';
 import store from "../../store";
 
 import styled from 'styled-components';
-import { Spinner } from '../../styledComponents/common';
+import { Spinner, WaringBlk } from '../../styledComponents/common';
 import 'reset-css';
 
 const loadableComponent = (component = "Home") => {
@@ -38,8 +38,9 @@ class App extends Component {
         <Body>
           <Router>
             <Switch>
-              <Route exact path='/' component={loadableComponent('PairList')} />
-              <Route path='/:pair' component={loadableComponent('TradingPair')} />
+              <Route exact path='/' component={loadableComponent('PairList')}/>
+              <Route path='/:pair' component={loadableComponent('TradingPair')}/>
+              <Route component={<WaringBlk content='Oops..找不到此頁面'/>} />
             </Switch>
           </Router>
         </Body>

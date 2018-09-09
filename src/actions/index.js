@@ -1,12 +1,18 @@
 export function fetching() {
     return {
-        type: 'fetching',
+        type: 'fetching'
     }
 }
 
 export function fetched() {
     return {
-        type: 'fetched',
+        type: 'fetched'
+    }
+}
+
+export function fetchError() {
+    return {
+        type: 'fetchError'
     }
 }
 
@@ -26,7 +32,11 @@ export function fetchPairList() {
             .then(r => r.json())
             .then(r => {
                 dispatch(updatePairList(r.result.trading_pairs));
-            }).then(r => {
+            })
+            .catch(() => {
+                dispatch(fetchError());
+            })
+            .then(r => {
                 dispatch(fetched());
             });
     };
@@ -50,5 +60,8 @@ export function fetchCandle(pairId) {
             .then(r => {
                 dispatch(updateCandle(r.result.candles))
             })
+            .catch(() => {
+                dispatch(fetchError());
+            });
     }
 }

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import TradingPair from '../../components/TradingPair';
 import CandelChart from '../../components/CandelChart';
 
-import { TitleBlk, Title } from '../../styledComponents/common';
+import { TitleBlk, Title, WaringBlk } from '../../styledComponents/common';
 import Back from '../../image/back.svg';
 
 
@@ -24,7 +24,8 @@ const BackIcon = styled.span`
 const mapStateToProps = (state) => {
 	return {
         candles: state.candles,
-        loading: state.loading
+        loading: state.loading,
+        error: state.error
     };
 };
 
@@ -93,13 +94,14 @@ class TradingPairContainer extends Component {
     }
 
     render() {
-        const { match, loading, candles } = this.props;
+        const { match, loading, candles, error } = this.props;
         return (
             <div>
                 <Link to='/'><BackIcon/></Link>
                 <TitleBlk>
                     <Title>{match.params.pair}</Title>
                 </TitleBlk>
+                { error ? <WaringBlk/> : null }
                 <TradingPair loading={loading} tickerData={this.state.tickerData}/>
                 <CandelChart candles={candles}/>
             </div>

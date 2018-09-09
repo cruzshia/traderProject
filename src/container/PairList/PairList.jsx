@@ -6,6 +6,7 @@ import PairList from '../../components/PairList';
 
 const mapStateToProps = (state) => {
 	return {
+        error: state.error,
         loading: state.loading,
         pairList: [...state.pairList]
     };
@@ -24,8 +25,8 @@ class PairListContainer extends Component {
     }
 
     render() {
-        const { loading } = this.props;
-        return (<PairList pairData={this.props.pairList} loading={loading}/>);
+        const { loading, error } = this.props;
+        return (<PairList pairData={this.props.pairList} loading={loading} error={error}/>);
     }
 }
 

@@ -13,7 +13,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
-import { Spinner, Pair, TitleBlk, Title} from '../../styledComponents/common';
+import { Spinner, Pair, TitleBlk, Title, WaringBlk } from '../../styledComponents/common';
 
 const categoryList = ['BTC', 'ETH', 'USDT', 'COB'];
 
@@ -100,10 +100,11 @@ class PairList extends PureComponent {
     }
 
     render() {
-        const { classes, loading } = this.props;
+        const { classes, loading, error } = this.props;
         const groupData = this.groupPairData();
         return (
             <div className={classes.root}>
+                { error ? <WaringBlk/> : null }
                 <TitleBlk>
                     <Title>交易對列表</Title>
                 </TitleBlk>
@@ -151,7 +152,8 @@ class PairList extends PureComponent {
 PairList.propTypes = {
     classes: PropTypes.object.isRequired,
     pairData: PropTypes.array.isRequired,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    error: PropTypes.bool
 };
 
 export default withStyles(styles)(PairList);
